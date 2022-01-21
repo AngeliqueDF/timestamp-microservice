@@ -28,6 +28,8 @@ app.get("/api/:date", middleware.validateDate, (req, res) => {
   res.json(helper.matchingDates(date))
 })
 
+app.use(middleware.errorHandler)
+
 // listen for requests :)
 const listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
