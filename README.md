@@ -3,7 +3,7 @@
 
 This is my solution for the project [Timestamp Microservice project by freeCodeCamp](https://www.freecodecamp.org/learn/apis-and-microservices/apis-and-microservices-projects/timestamp-microservice).
 
-This project is an Express.js API which returns timestamps corresponding to the date entered as a parameter.
+The project is an Express.js API which returns timestamps corresponding to the date entered as a parameter. According to the requirements, any date value that can be successfully parsed by new Date() is valid.
 
 ___
 
@@ -42,5 +42,3 @@ When no date is entered, the response is a JSON object where the ``unix`` and ``
   }
 
   ```
-
-  <!-- solution used? -->
