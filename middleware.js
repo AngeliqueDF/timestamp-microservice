@@ -4,8 +4,6 @@ const validateDate = (req, res, next) => {
   let newDate = new Date(date)
   let unixDate = new Date(Number(date))
 
-  console.log(newDate, unixDate);
-
   try {
     if (newDate.toString() !== 'Invalid Date') {
       req.params.dateToConvert = newDate
@@ -21,7 +19,14 @@ const validateDate = (req, res, next) => {
   }
 };
 
+const errorHandler = (err, req, res, next) => {
+  return res.status(401).send({
+    error: 'Invalid Date',
+  });
+};
+
 
 module.exports = {
-  validateDate
+  validateDate,
+  errorHandler
 }
