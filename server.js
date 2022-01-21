@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const helper = require('./helper')
+const middleware = require('./middleware')
 
 
 // enable CORS (https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
@@ -21,6 +22,11 @@ app.get("/api/", (req, res) => {
   res.json(helper.matchingDates(currentTime))
 })
 
+app.get("/api/:date", middleware.validateDate, (req, res) => {
+  const { dateToConvert: date } = req.params
+
+  res.json(helper.matchingDates(date))
+})
 
 // listen for requests :)
 const listener = app.listen(process.env.PORT, function () {
