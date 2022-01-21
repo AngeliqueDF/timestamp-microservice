@@ -18,10 +18,7 @@ app.get("/", function (req, res) {
 
 app.get("/api/", (req, res) => {
   let currentTime = new Date()
-  res.json({
-    unix: currentTime.getTime(),
-    utc: currentTime
-  })
+  res.json(helper.matchingDates(currentTime))
 })
 
 
