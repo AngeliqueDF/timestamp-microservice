@@ -1,44 +1,78 @@
-
 # Timestamp Microservice
-
-This is my solution for the [Timestamp Microservice project by freeCodeCamp](https://www.freecodecamp.org/learn/apis-and-microservices/apis-and-microservices-projects/timestamp-microservice).
 
 The project is an Express.js API which returns timestamps corresponding to the date entered as a parameter. According to the requirements, any date value that can be successfully parsed by new Date() is valid.
 
-___
+---
 
-## Endpoints:
+## API
 
-### GET ``/api/``
+### Get current time in UTC and UNIX format
 
-When no date is entered, the response is a JSON object where the ``unix`` and ``utc`` keys' values correspond to the current time.
+`GET /api/`
 
-```
+#### Parameters
+
+none
+
+#### Response
+
+```javascript
 {
-  unix: [UNIX timestamp of the current time],
-  utc: [UTC string of the current time]
+  unix: currentTimeUNIX,
+  utc: currentTimeUTC
 }
-
 ```
 
-### GET ``/api/:date``
+<br />
 
-- When a valid `:date` is provided as a parameter, the response is an object with the keys ``unix`` and ``utc`` whose values correspond to the date entered.
+### Get a specficic timestamp in UTC and UNIX format
 
-  ```
+`GET /api/:date`
+
+#### Parameters
+
+| Name   | Value                                                                             | Description                                                              |
+| ------ | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| `date` | `dateString` or `timestampNumber` the number of milliseconds since the UNIX epoch | The timestamp to convert, must be parseable by the `Date()` constructor. |
+
+#### Responses
+
+<!--
+| Status code | Response         | Description               |
+| ---- | ------------ | ------------------------- |
+| 200 | `dateString` | The timestamp to convert. | -->
+
+- When a valid `:date` is provided as a parameter, the response is an object with the keys `unix` and `utc` whose values correspond to the date entered:
+
+  ```javascript
+  // GET "http://localhost:3000/api/2015-12-25"
+
+  // or GET "http://localhost:3000/api/1451001600000"
+
+  // status code: 200 Success
   {
-    unix: [UNIX timestamp of the date entered],
-    utc: [UTC string of the the date entered]
+    unix: 1451001600000,
+    utc: "Fri, 25 Dec 2015 00:00:00 GMT"
   }
-
   ```
 
-- When the ``:date`` entered can't be converted to a valid date, the response will be the following object with a status code 401 Bad request:
+- When the `:date` entered can't be converted to a valid date, the response will be the following object with a status code 401 Bad request:
 
-  ```
+  ```javascript
+  // GET "http://localhost:3000/api/invalid_date"
 
+  // status code: 401 Bad request
   {
-    error: "Invalid Date"
+  	error: "Invalid Date";
   }
-
   ```
+
+  <br />
+
+## References
+
+- [Date() constructor.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/Date)
+
+## Sources
+
+- [Timestamp Microservice project by freeCodeCamp.](https://www.freecodecamp.org/learn/apis-and-microservices/apis-and-microservices-projects/timestamp-microservice)
