@@ -1,6 +1,6 @@
 # Timestamp Microservice
 
-The project is an Express.js API which returns timestamps corresponding to the date entered as a parameter. According to the requirements, any date value that can be successfully parsed by new Date() is valid.
+The project is an Express.js API which returns timestamps corresponding to the date entered as a parameter. According to the requirements, any date value that can be successfully parsed by `new Date()` is valid.
 
 ---
 
@@ -16,10 +16,13 @@ none
 
 #### Response
 
-```javascript
+```json
+// GET "http://localhost:3000/api/"
+
+// status code: 200 Success
 {
-  unix: currentTimeUNIX,
-  utc: currentTimeUTC
+	"unix": "1451001600000",
+	"utc": "Fri, 25 Dec 2015 00:00:00 GMT"
 }
 ```
 
@@ -31,9 +34,9 @@ none
 
 #### Parameters
 
-| Name   | Value                                                                             | Description                                                              |
-| ------ | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| `date` | `dateString` or `timestampNumber` the number of milliseconds since the UNIX epoch | The timestamp to convert, must be parseable by the `Date()` constructor. |
+| Name   | Value                                                                             | Description                                                                  |
+| ------ | --------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `date` | `dateString` or `timestampNumber` the number of milliseconds since the UNIX epoch | The timestamp to convert, must be parseable by the `new Date()` constructor. |
 
 #### Responses
 
@@ -44,15 +47,14 @@ none
 
 - When a valid `:date` is provided as a parameter, the response is a JSON object with the keys `unix` and `utc` whose values correspond to the date entered:
 
-  ```javascript
+  ```json
   // GET "http://localhost:3000/api/2015-12-25"
-
   // or GET "http://localhost:3000/api/1451001600000"
 
   // status code: 200 Success
   {
-    "unix": "1451001600000",
-    "utc": "Fri, 25 Dec 2015 00:00:00 GMT"
+  	"unix": "1451001600000",
+  	"utc": "Fri, 25 Dec 2015 00:00:00 GMT"
   }
   ```
 
