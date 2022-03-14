@@ -16,10 +16,13 @@ none
 
 #### Response
 
-```json
+```javascript
 // GET "http://localhost:3000/api/"
 
 // status code: 200 Success
+```
+
+```json
 {
 	"unix": "1451001600000",
 	"utc": "Fri, 25 Dec 2015 00:00:00 GMT"
@@ -47,11 +50,14 @@ none
 
 - When a valid `:date` is provided as a parameter, the response is a JSON object with the keys `unix` and `utc` whose values correspond to the date entered:
 
-  ```json
+  ```javascript
   // GET "http://localhost:3000/api/2015-12-25"
   // or GET "http://localhost:3000/api/1451001600000"
 
   // status code: 200 Success
+  ```
+
+  ```json
   {
   	"unix": "1451001600000",
   	"utc": "Fri, 25 Dec 2015 00:00:00 GMT"
@@ -60,12 +66,15 @@ none
 
 - When the `:date` entered can't be converted to a valid date, the response will be the following JSON object with a status code 401 Bad request:
 
-  ```json
+  ```javascript
   // GET "http://localhost:3000/api/invalid_date"
 
   // status code: 401 Bad request
+  ```
+
+  ```json
   {
-    "error": "Invalid Date";
+  	"error": "Invalid Date"
   }
   ```
 
