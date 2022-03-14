@@ -42,7 +42,7 @@ none
 | ---- | ------------ | ------------------------- |
 | 200 | `dateString` | The timestamp to convert. | -->
 
-- When a valid `:date` is provided as a parameter, the response is an object with the keys `unix` and `utc` whose values correspond to the date entered:
+- When a valid `:date` is provided as a parameter, the response is a JSON object with the keys `unix` and `utc` whose values correspond to the date entered:
 
   ```javascript
   // GET "http://localhost:3000/api/2015-12-25"
@@ -51,19 +51,19 @@ none
 
   // status code: 200 Success
   {
-    unix: 1451001600000,
-    utc: "Fri, 25 Dec 2015 00:00:00 GMT"
+    "unix": "1451001600000",
+    "utc": "Fri, 25 Dec 2015 00:00:00 GMT"
   }
   ```
 
-- When the `:date` entered can't be converted to a valid date, the response will be the following object with a status code 401 Bad request:
+- When the `:date` entered can't be converted to a valid date, the response will be the following JSON object with a status code 401 Bad request:
 
-  ```javascript
+  ```json
   // GET "http://localhost:3000/api/invalid_date"
 
   // status code: 401 Bad request
   {
-  	error: "Invalid Date";
+    "error": "Invalid Date";
   }
   ```
 
