@@ -27,6 +27,9 @@ const errorHandler = (err, req, res, next) => {
 	});
 };
 
+const unknownPath = (req, res, next) => {
+	res.status(404).send("Sorry, unknown page.");
+};
 
 module.exports = {
 	validateDate,

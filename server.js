@@ -25,11 +25,12 @@ app.get("/api/", (req, res) => {
 
 app.get("/api/:date", middleware.validateDate, (req, res) => {
 	const { dateToConvert: date } = req.params;
-
 	res.json(helper.matchingDates(date));
 });
 
 app.use(middleware.errorHandler);
+
+app.use(middleware.unknownPath);
 
 // listen for requests :)
 const listener = app.listen(process.env.PORT, function () {
