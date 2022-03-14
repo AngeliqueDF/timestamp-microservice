@@ -1,36 +1,37 @@
-const express = require('express');
+const express = require("express");
 const app = express();
-const helper = require('./helper')
-const middleware = require('./middleware')
-
+const helper = require("./helper");
+const middleware = require("./middleware");
+const helmet = require("helmet");
 
 // enable CORS (https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
-// so that your API is remotely testable by FCC 
-const cors = require('cors');
-app.use(cors({ optionsSuccessStatus: 200 }));  // some legacy browsers choke on 204
+// so that your API is remotely testable by FCC
+const cors = require("cors");
+app.use(cors({ optionsSuccessStatus: 200 })); // some legacy browsers choke on 204
 
-require('dotenv').config();
-app.use(express.static('public'));
+require("dotenv").config();
+app.use(helmet());
+app.use(express.static("public"));
 
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", function (req, res) {
-  res.sendFile(__dirname + '/views/index.html');
+	res.sendFile(__dirname + "/views/index.html");
 });
 
 app.get("/api/", (req, res) => {
-  let currentTime = new Date()
-  res.json(helper.matchingDates(currentTime))
-})
+	let currentTime = new Date();
+	res.json(helper.matchingDates(currentTime));
+});
 
 app.get("/api/:date", middleware.validateDate, (req, res) => {
-  const { dateToConvert: date } = req.params
+	const { dateToConvert: date } = req.params;
 
-  res.json(helper.matchingDates(date))
-})
+	res.json(helper.matchingDates(date));
+});
 
-app.use(middleware.errorHandler)
+app.use(middleware.errorHandler);
 
 // listen for requests :)
 const listener = app.listen(process.env.PORT, function () {
-  console.log('Your app is listening on port ' + listener.address().port);
+	console.log("Your app is listening on port " + listener.address().port);
 });
