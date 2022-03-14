@@ -1,32 +1,35 @@
 const validateDate = (req, res, next) => {
-  const { date } = req.params
+	// The date entered was either a date string or a timestamp
+	const { date } = req.params;
 
-  let newDate = new Date(date)
-  let unixDate = new Date(Number(date))
+	// We attempt to create a Date object for each posssibility and check whether the instanciation was successful
+	let dateString = new Date(date);
+	let timestamp = new Date(Number(date));
 
-  try {
-    if (newDate.toString() !== 'Invalid Date') {
-      req.params.dateToConvert = newDate
-      next()
-    } else if (unixDate.toString() !== 'Invalid Date') {
-      req.params.dateToConvert = unixDate
-      next()
-    } else {
-      throw new Error('Invalid Date')
-    }
-  } catch (err) {
-    next(err)
-  }
+	try {
+		if (dateString.toString() !== "Invalid Date") {
+			req.params.dateToConvert = dateString;
+			next();
+		} else if (timestamp.toString() !== "Invalid Date") {
+			req.params.dateToConvert = timestamp;
+			next();
+		} else {
+			throw new Error("Invalid Date");
+		}
+	} catch (err) {
+		next(err);
+	}
 };
 
 const errorHandler = (err, req, res, next) => {
-  return res.status(401).send({
-    error: 'Invalid Date',
-  });
+	return res.status(401).send({
+		error: "Invalid Date",
+	});
 };
 
 
 module.exports = {
-  validateDate,
-  errorHandler
-}
+	validateDate,
+	errorHandler,
+	unknownPath,
+};
