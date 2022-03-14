@@ -71,6 +71,16 @@ none
 
   <br />
 
+## Features
+
+- Converts a given time to its UTC and UNIX equivalents.
+- Handles unknown paths.
+
+## Technologies
+
+- `express`
+- `helmet`
+
 ## References
 
 - [Date() constructor.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/Date)
